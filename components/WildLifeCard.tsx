@@ -1,4 +1,6 @@
 import { Text, Image, Dimensions, View, StyleSheet } from "react-native";
+import SvgComponent from "./SvgComponent"
+
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -43,11 +45,9 @@ export const WildLifeCard = ({ observation }) => {
             fontStyle: "italic",
           }}
         >
-          {cientificName}
+          {"("+cientificName+")"}
         </Text>
-        <Text style={{ color: "white", fontSize: 14 }}>
-          {conservationStatus}
-        </Text>
+        <SvgComponent/>
         <Text style={{ color: "white", fontSize: 14 }}>{climbingZone}</Text>
         <Text style={{ color: "white", fontSize: 14 }}>{userName}</Text>
         <Text style={{ color: "white", fontSize: 14 }}>{date}</Text>
