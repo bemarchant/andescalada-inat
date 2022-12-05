@@ -4,11 +4,11 @@ export const KINGDOM = {
       color: '#896244ff',
     },
     plantae: {
-      id: 2,
+      id: 47126,
       color: '#65985aff',
     },
     funga: {
-      id: 3,
+      id: 47170,
       color: '#7a5472ff',
     },
   };
