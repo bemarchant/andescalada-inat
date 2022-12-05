@@ -7,7 +7,7 @@ const kingdomOnPressHandler = (text) => {
 
 const KingdomCard = ({ kingdom, children, total_count }) => {
   let height = total_count < MIN_HEIGHT ? MIN_HEIGHT : total_count;
-
+  height = MIN_HEIGHT;
   return (
     <View>
       <Pressable onPress={kingdomOnPressHandler.bind(this, children)}>
