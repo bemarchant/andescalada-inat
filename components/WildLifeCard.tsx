@@ -1,5 +1,5 @@
 import { Text, Image, Dimensions, View, StyleSheet } from "react-native";
-import ConservationStatusBar from "./ConservationStatusBar";
+import ConservationStatusBar from "./svg/ConservationStatusBar";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
