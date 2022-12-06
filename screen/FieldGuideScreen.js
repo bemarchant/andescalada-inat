@@ -4,12 +4,15 @@ import Observation, { WildLifeData } from "../components/Observation";
 
 const MIN_OBS = 5;
 
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
+
 const FieldGuideScreen = () => {
   for (let i = 0; i < MIN_OBS; i++) {}
 
   console.log("WildLifeData[0].observations : ", WildLifeData[0]);
 
-  const observation = WildLifeData[0].observations["results"][3];
+  const observation = WildLifeData[0].observations["results"][4];
 
   return (
     <View style={styles.wildLifeCardContainer}>
