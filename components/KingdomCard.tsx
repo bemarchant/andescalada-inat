@@ -14,12 +14,12 @@ const KingdomCard = ({ kingdom, children, total_count }) => {
   height = MIN_HEIGHT;
   console.log(kingdom.id)
   return (
-    <View>
+    <View style={styles.kingdomContainer}>
       <Pressable onPress={kingdomOnPressHandler.bind(this, children)}>
 
         <View
           style={[
-            styles.kingdomContainer,
+            styles.kingdomBarContainer,
             { backgroundColor: kingdom.color, height: 50 },
           ]}
         >
@@ -52,11 +52,11 @@ const getKingdomIcon = (taxa_id) => {
 
 const styles = StyleSheet.create({
   kingdomContainer: {
+  },
+
+  kingdomBarContainer: {
     flexDirection: "row",
     margin: 10,
-    borderColor: "black",
-    backgroundColor: "pink",
-    borderWidth: 0,
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "flex-start",
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
 
 
   kingdomIcon: {
-    // backgroundColor: 'red',
+    width: 50,
+    //backgroundColor: 'red',
 
   },
   

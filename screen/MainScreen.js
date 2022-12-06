@@ -34,7 +34,8 @@ export default MainScreen;
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+    justifyContent: "flex-end",
+    paddingBottom: 60,
     backgroundColor: "#454545ff",
-    justifyContent: "center",
   },
 });
