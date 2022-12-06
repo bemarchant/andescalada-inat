@@ -5,7 +5,7 @@ import FieldGuideScreen from "./screen/FieldGuideScreen";
 const queryClient = new QueryClient();
 
 let screen = <MainScreen />;
-screen = <FieldGuideScreen />;
+//screen = <FieldGuideScreen />;
 
 export default function App() {
   return (

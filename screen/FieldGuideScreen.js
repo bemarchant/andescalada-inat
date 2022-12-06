@@ -12,7 +12,7 @@ const FieldGuideScreen = () => {
 
   console.log("WildLifeData[0].observations : ", WildLifeData[0]);
 
-  const observation = WildLifeData[0].observations["results"][4];
+  const observation = WildLifeData[1].observations["results"][12];
 
   return (
     <View style={styles.wildLifeCardContainer}>
