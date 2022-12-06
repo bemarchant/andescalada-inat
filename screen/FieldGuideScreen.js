@@ -10,12 +10,10 @@ const windowHeight = Dimensions.get("window").height;
 const FieldGuideScreen = () => {
   for (let i = 0; i < MIN_OBS; i++) {}
 
-  console.log("WildLifeData[0].observations : ", WildLifeData[0]);
-
-  const observation = WildLifeData[1].observations["results"][12];
+  const observation = WildLifeData[1].observations["results"][0];
 
   return (
-    <View style={styles.wildLifeCardContainer}>
+    <View style={styles.fieldWildLifeContainer}>
       <WildLifeCard observation={observation} />
     </View>
   );
@@ -25,11 +23,9 @@ export default FieldGuideScreen;
 
 const styles = StyleSheet.create({
   optionContainer: {
-    backgroundColor: "#454545ff",
+    //backgroundColor: "#454545ff",
   },
-  wildLifeCardContainer: {
-    backgroundColor: "#454545ff",
-    justifyContent: "center",
-    alignItems: "center",
+  fieldWildLifeContainer: {
+    flex: 1,
   },
 });

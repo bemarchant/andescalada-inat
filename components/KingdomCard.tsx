@@ -9,10 +9,7 @@ const kingdomOnPressHandler = (text) => {
   console.log("kingdom : ", text);
 };
 
-const KingdomCard = ({ kingdom, children, total_count }) => {
-  let height = total_count < MIN_HEIGHT ? MIN_HEIGHT : total_count;
-  height = MIN_HEIGHT;
-  console.log(kingdom.id)
+const KingdomCard = ({ kingdom, children, total_count}) => {
   return (
     <View style={styles.kingdomContainer}>
       <Pressable onPress={kingdomOnPressHandler.bind(this, children)}>
@@ -63,6 +60,7 @@ const styles = StyleSheet.create({
   },
 
   kingdomText: {
+    paddingLeft: 10,
     fontSize: 32,
     fontWeight: "bold",
     color: "#454545ff",
