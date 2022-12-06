@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getObservation } from "../utils/inat.js";
+import { getObservation } from "../utils/inat";
 import KingdomCard from "./KingdomCard";
 
 export const WildLifeData = [];
