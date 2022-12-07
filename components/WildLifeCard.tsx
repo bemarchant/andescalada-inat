@@ -34,7 +34,7 @@ export const WildLifeCard = ({ observation }) => {
           source={{
             uri: image_uri,
             width: windowWidth * 0.6,
-            height: windowWidth * 0.65 * photoRatio,
+            height: windowHeight * 0.5,
           }}
         />
       </View>
@@ -59,6 +59,10 @@ export const WildLifeCard = ({ observation }) => {
         <Text style={{ color: "white", fontSize: 8 }}>{date}</Text>
       
       </View>
+
+      <View>
+        
+      </View>
     </View>
   );
 };
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: 'green',
     position: "absolute",
-    bottom: 250,
+    bottom: 230,
     left: 90,
     height: windowHeight*0.1,
     width: windowWidth*0.4,
@@ -102,8 +106,6 @@ const getPhotoImageUri = (observation) => {
 // console.log("id : ", observation["id"]);
 // console.log("photo_id : ", photo_id);
 // console.log("observation_photos : ", observation["photos"][0]["observation_photos"]);
-
-
 
   return image_uri;
 }

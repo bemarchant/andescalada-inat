@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import MainScreen from "./screen/MainScreen";
 import FieldGuideScreen from "./screen/FieldGuideScreen";
 const queryClient = new QueryClient();
@@ -9,7 +9,9 @@ let screen = <MainScreen />;
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>{screen}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <View style={styles.screenContainer}>{screen}</View>
+    </QueryClientProvider>
   );
 }
 

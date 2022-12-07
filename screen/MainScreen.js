@@ -5,6 +5,8 @@ import { CLIMBING_ZONE, KINGDOM } from "../utils/Constants";
 const MainScreen = () => {
   return (
     <View style={styles.screenContainer}>
+      {/* <View> TITLE </View> */}
+
       <View>
         <Observation
           climbingZone={CLIMBING_ZONE.elmanzano}
@@ -36,6 +38,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     paddingBottom: 60,
+    paddingLeft: 20,
+    paddingRight: 20,
     backgroundColor: "#454545ff",
   },
 });
