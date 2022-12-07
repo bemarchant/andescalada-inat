@@ -1,15 +1,15 @@
-import { Text, Image, Dimensions, View, StyleSheet } from "react-native";
+import {Text, Image, Dimensions, View, StyleSheet, Pressable } from "react-native";
+import { useState, useEffect} from "react";
+import Observation from "./Observation";
 import ConservationStatusBar from "./svg/ConservationStatusBar";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-let photoWidth = 0;
-let photoHeight = 0;
 
+let photoWidth = windowWidth * 0.6;
+let photoHeight = windowHeight * 0.5;
 
 export const WildLifeCard = ({ observation }) => {
-
-  setPhotoDimensions(observation);
   const day = observation["observed_on_details"]["day"];
   const month = observation["observed_on_details"]["month"];
   const year = observation["observed_on_details"]["year"];
@@ -19,13 +19,40 @@ export const WildLifeCard = ({ observation }) => {
   let communName = observation["taxon"]["preferred_common_name"];
   const cientificName = observation["taxon"]["name"];
   communName = communName ? communName : "Desconocido";
-
   const image_uri = getPhotoImageUri(observation);
+
   setPhotoDimensions(observation);
-  let photoRatio =  photoWidth / photoHeight;
+
+  const [photoZoomIn, setPhotoZoomIn] = useState(false);
+  const [cardWidth, setCardWidth] = useState(windowWidth * 0.6);
+  const [cardHeight, setCardHeight] = useState(windowHeight * 0.5);
+
+  useEffect(() => {
+    console.log('useEffect')
+      if(!photoZoomIn){
+        setCardWidth(windowWidth * 0.6);
+        setCardHeight(windowHeight * 0.5);
+      }
+      else{
+        setCardWidth(windowWidth * 1.1);
+        setCardHeight(windowHeight * 1.1);
+      }
+    }, [photoZoomIn]);
+
+
+  const wildCardLifeOnPressHandler = () => {
+    console.log('pressed');
+    if(!photoZoomIn){
+      setPhotoZoomIn(true);
+    }
+    else{
+      setPhotoZoomIn(false);
+    }
+    return;
+  }
 
   return (
-    <View style={styles.wildLifeCardContainer}>
+    <Pressable onPress={wildCardLifeOnPressHandler} style={styles.wildLifeCardContainer}>
       <View style={styles.imageContainer}>
         <Image
           style={{
@@ -33,13 +60,13 @@ export const WildLifeCard = ({ observation }) => {
           }}
           source={{
             uri: image_uri,
-            width: windowWidth * 0.6,
-            height: windowHeight * 0.5,
+            width: cardWidth,
+            height: cardHeight,
           }}
         />
       </View>
       
-      <View style={styles.infoText}>
+      <View  style={styles.infoText}>
         <Text style={{ color: "white", fontSize: 14, fontWeight: "bold" }}>
           {communName}
         </Text>
@@ -53,17 +80,14 @@ export const WildLifeCard = ({ observation }) => {
           {"("+cientificName+")"}
         </Text>
 
-        <ConservationStatusBar height={20}/>
+        <ConservationStatusBar consevationStatus={''} height={20}/>
         <Text style={{ color: "white", fontSize: 8 }}>{climbingZone}</Text>
         <Text style={{ color: "white", fontSize: 8 }}>{userName}</Text>
         <Text style={{ color: "white", fontSize: 8 }}>{date}</Text>
       
       </View>
+    </Pressable>
 
-      <View>
-        
-      </View>
-    </View>
   );
 };
 
@@ -94,18 +118,16 @@ const styles = StyleSheet.create({
 
 });
 
+
+const getConservationStatus = (observation) => {
+  return '';
+}
+
 const getPhotoImageUri = (observation) => {
   const photo_id = observation["photos"][0]["id"];
   const photoFileFormat = getPhotoFileFormat(observation["photos"][0]["url"])
   const baseUrl = getPhotoBaseUrl(observation["photos"][0]["url"]);
   const image_uri = baseUrl + photo_id + "/original."+ photoFileFormat;
-
-
-// console.log(observation);
-// console.log(Object.keys(observation));
-// console.log("id : ", observation["id"]);
-// console.log("photo_id : ", photo_id);
-// console.log("observation_photos : ", observation["photos"][0]["observation_photos"]);
 
   return image_uri;
 }
@@ -123,3 +145,5 @@ const setPhotoDimensions = (observation) => {
   photoWidth = observation["photos"][0]["original_dimensions"]["width"];
   return;
 }
+
+

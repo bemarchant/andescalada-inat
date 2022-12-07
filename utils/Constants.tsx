@@ -16,6 +16,7 @@ export const KINGDOM = {
 export const CLIMBING_ZONE = {
     chilechico: {
       "id" : 0,
+      "name": "Cerro El Indio",
       "lat" : 0,
       "lng" : 0,
       "radius" : 0,
@@ -23,6 +24,7 @@ export const CLIMBING_ZONE = {
 
     elmanzano: {
         "id" : 1,
+        "name": "El Manzano",
         "lat" : -33.554166688548584,
         "lng" : -70.37831746080964,
         "radius" : 4,

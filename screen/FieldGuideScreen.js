@@ -10,7 +10,7 @@ const windowHeight = Dimensions.get("window").height;
 const FieldGuideScreen = () => {
   for (let i = 0; i < MIN_OBS; i++) {}
 
-  const observation = WildLifeData[2].observations["results"][0];
+  const observation = WildLifeData[0].observations["results"][10];
 
   return (
     <View style={styles.fieldWildLifeContainer}>

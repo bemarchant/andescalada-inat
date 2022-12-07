@@ -5,7 +5,6 @@ import KingdomCard from "./KingdomCard";
 export const WildLifeData = [];
 
 const Observation = ({ children, climbingZone, kingdom }) => {
-  console.log("Observation.jsx");
   const query = useQuery({
     queryKey: ["observation", kingdom.id],
     queryFn: getObservation.bind(this, climbingZone, kingdom.id),
