@@ -12,9 +12,27 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="MainScreen" component={MainScreen} />
-          <Stack.Screen name="FieldGuideScreen" component={FieldGuideScreen} />
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#454356ff" },
+            headerTintColor: "white",
+            contentStyle: { backgroundColor: "#454545ff" },
+          }}
+        >
+          <Stack.Screen
+            name="MainScreen"
+            component={MainScreen}
+            options={{
+              title: "El Manzano",
+            }}
+          />
+          <Stack.Screen
+            name="FieldGuideScreen"
+            component={FieldGuideScreen}
+            options={{
+              title: "El Manzano",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
