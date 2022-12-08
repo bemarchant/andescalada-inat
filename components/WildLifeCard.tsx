@@ -32,8 +32,8 @@ export const WildLifeCard = ({ observation }) => {
         setCardHeight(windowHeight * 0.5);
       }
       else{
-        setCardWidth(windowWidth * 1.1);
-        setCardHeight(windowHeight * 1.1);
+        setCardWidth(windowWidth * 1.0);
+        setCardHeight(windowHeight * 1.0);
       }
     }, [photoZoomIn]);
 
@@ -49,11 +49,13 @@ export const WildLifeCard = ({ observation }) => {
   }
 
   return (
-    <Pressable onPress={wildCardLifeOnPressHandler} style={styles.wildLifeCardContainer}>
+    <View>
+    
+    <Pressable onPress={wildCardLifeOnPressHandler}>
       <View style={styles.imageContainer}>
         <Image
           style={{
-            borderRadius: 8,
+            borderRadius: 10,
           }}
           source={{
             uri: image_uri,
@@ -61,29 +63,32 @@ export const WildLifeCard = ({ observation }) => {
             height: cardHeight,
           }}
         />
-      </View>
-      
-      <View  style={styles.infoText}>
-        <Text style={{ color: "white", fontSize: 14, fontWeight: "bold" }}>
-          {communName}
-        </Text>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 8,
-            fontStyle: "italic",
-          }}
-        >
-          {"("+cientificName+")"}
-        </Text>
+        <View  style={[styles.infoContainer,{bottom: cardWidth*0.1, left:cardHeight*0.02}]}>
+          <Text  style={[styles.infoText,{ fontSize: 14}]}>
+            {communName}
+          </Text>
+          <Text
+            style={[styles.infoText,{
+              fontStyle: "italic",
+            }]}
+          >
+            {"("+cientificName+")"}
+          </Text>
 
-        <ConservationStatusBar consevationStatus={''} height={20}/>
-        <Text style={{ color: "white", fontSize: 8 }}>{climbingZone}</Text>
-        <Text style={{ color: "white", fontSize: 8 }}>{userName}</Text>
-        <Text style={{ color: "white", fontSize: 8 }}>{date}</Text>
-      
+          <ConservationStatusBar consevationStatus={''} height={20}/>
+          <Text style={styles.infoText}>{climbingZone}</Text>
+          <Text  style={styles.infoText}>{userName}</Text>
+          <Text  style={styles.infoText}>{date}</Text>
+
+        </View>
+
       </View>
+      
+
     </Pressable>
+
+
+  </View>
 
   );
 };
@@ -91,27 +96,27 @@ export const WildLifeCard = ({ observation }) => {
 const styles = StyleSheet.create({
 
   imageContainer: {
-    flex: 1,
     // backgroundColor: 'pink',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 
   wildLifeCardContainer: {
-    // backgroundColor: 'red',
-    flex:1
+    //backgroundColor: 'gray',
+  },
 
+  infoContainer: {
+    //backgroundColor: 'green',
+    position: "absolute",
+    bottom: 10,
+    left: 10,
   },
 
   infoText: {
-    flex: 1,
-    // backgroundColor: 'green',
-    position: "absolute",
-    bottom: 230,
-    left: 90,
-    height: windowHeight*0.1,
-    width: windowWidth*0.4,
-  },
+    color: "white", 
+    fontSize: 8, 
+    fontWeight: "bold"
+  }
 
 });
 
