@@ -3,16 +3,13 @@ import { KINGDOM } from "../utils/Constants";
 import AnimalKingdomIcon from "./svg/AnimalKingdomIcon";
 import FungiKingdomIcon from "./svg/FungiKingdomIcon";
 import PlantaeKingdomIcon from "./svg/PlantaeKingdomIcon";
-const MIN_HEIGHT = 80;
 
-const kingdomOnPressHandler = (text) => {
-  console.log("kingdom : ", text);
-};
-
-const KingdomCard = ({ kingdom, children, total_count}) => {
+const KingdomCard = ({ navigation, kingdom, total_count}) => {
+  
+console.log("kingdom : ", kingdom);
   return (
     <View style={styles.kingdomContainer}>
-      <Pressable onPress={kingdomOnPressHandler.bind(this, children)}>
+      <Pressable  onPress={() => navigation.navigate('FieldGuideScreen')}>
 
         <View
           style={[

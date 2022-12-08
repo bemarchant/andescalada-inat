@@ -4,7 +4,7 @@ import KingdomCard from "./KingdomCard";
 
 export const WildLifeData = [];
 
-const Observation = ({ children, climbingZone, kingdom }) => {
+const Observation = ({ navigation, children, climbingZone, kingdom }) => {
   const query = useQuery({
     queryKey: ["observation", kingdom.id],
     queryFn: getObservation.bind(this, climbingZone, kingdom.id),
@@ -13,12 +13,8 @@ const Observation = ({ children, climbingZone, kingdom }) => {
   if (!query.isLoading) {
     let data = { taxa_id: kingdom.id, observations: query.data };
     WildLifeData.push(data);
-
     return (
-      <KingdomCard kingdom={kingdom} total_count={query.data["total_results"]}>
-        {children}
-      </KingdomCard>
-    );
+      <KingdomCard navigation={navigation} kingdom={kingdom} total_count={query.data["total_results"]}/>    );
   } else {
     return;
   }
