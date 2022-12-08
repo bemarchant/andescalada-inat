@@ -8,7 +8,7 @@ import PlantaeKingdomIcon from "./svg/PlantaeKingdomIcon";
 const KingdomCard = ({ navigation, kingdom, total_count}) => {
     return (
     <View style={styles.kingdomContainer}>
-      <Pressable  onPress={() => navigation.navigate('FieldGuideScreen', {taxaId: kingdom.id})}>
+      <Pressable  onPress={() => navigation.navigate('FieldGuideScreen', {title: kingdom.name, color: kingdom.color, taxaId: kingdom.id})}>
         <View
           style={[
             styles.kingdomBarContainer,
