@@ -1,6 +1,7 @@
 const baseUrl = "https://api.inaturalist.org/v1/";
-const observationHistogramPath = "observations/histogram";
 const observationPath = "observations/";
+import { WILD_LIFE_DATA } from "./Constants";
+import { useQuery } from "@tanstack/react-query";
 
 const fetchObservations = ({ taxon_id, lng, lat, radius }) => {
   const paramsObj = {
@@ -15,6 +16,7 @@ const fetchObservations = ({ taxon_id, lng, lat, radius }) => {
 };
 
 export const getObservation = async (climbingZone, kingdom_id) => {
+  let data;
   const res = await fetchObservations({
     taxon_id: kingdom_id,
     lng: climbingZone.lng,
@@ -25,3 +27,19 @@ export const getObservation = async (climbingZone, kingdom_id) => {
 
   return data;
 };
+
+export const downLoadWildLifeData = (climbingZone, kingdom ) => {
+  const query = useQuery({
+    queryKey: ["observation", kingdom.id],
+    queryFn: getObservation.bind(this, climbingZone, kingdom.id),
+  });
+
+  if (!query.isLoading) {
+    let data = { observations: query.data };
+    WILD_LIFE_DATA.push({taxaId: kingdom.id, data: data});
+  }
+   else {
+    return;
+  }
+};
+

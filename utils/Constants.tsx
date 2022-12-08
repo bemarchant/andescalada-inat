@@ -1,3 +1,5 @@
+export const WILD_LIFE_DATA = [];
+
 export const KINGDOM = {
     animalia: {
       id: 1,

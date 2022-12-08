@@ -1,6 +1,5 @@
 import {Text, Image, Dimensions, View, StyleSheet, Pressable } from "react-native";
 import { useState, useEffect} from "react";
-import Observation from "./Observation";
 import ConservationStatusBar from "./svg/ConservationStatusBar";
 
 const windowWidth = Dimensions.get("window").width;
@@ -28,7 +27,6 @@ export const WildLifeCard = ({ observation }) => {
   const [cardHeight, setCardHeight] = useState(windowHeight * 0.5);
 
   useEffect(() => {
-    console.log('useEffect')
       if(!photoZoomIn){
         setCardWidth(windowWidth * 0.6);
         setCardHeight(windowHeight * 0.5);
@@ -41,7 +39,6 @@ export const WildLifeCard = ({ observation }) => {
 
 
   const wildCardLifeOnPressHandler = () => {
-    console.log('pressed');
     if(!photoZoomIn){
       setPhotoZoomIn(true);
     }
