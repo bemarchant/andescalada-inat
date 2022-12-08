@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { WILD_LIFE_DATA, KINGDOM } from "../utils/Constants";
+import { KINGDOM } from "../utils/Constants";
 
 import AnimalKingdomIcon from "./svg/AnimalKingdomIcon";
 import FungiKingdomIcon from "./svg/FungiKingdomIcon";
@@ -8,7 +8,7 @@ import PlantaeKingdomIcon from "./svg/PlantaeKingdomIcon";
 const KingdomCard = ({ navigation, kingdom, total_count}) => {
     return (
     <View style={styles.kingdomContainer}>
-      <Pressable  onPress={() => navigation.navigate('FieldGuideScreen')}>
+      <Pressable  onPress={() => navigation.navigate('FieldGuideScreen', {taxaId: kingdom.id})}>
         <View
           style={[
             styles.kingdomBarContainer,
