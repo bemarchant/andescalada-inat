@@ -38,8 +38,7 @@ export const downLoadWildLifeData = (climbingZone, kingdom ) => {
     let data = { observations: query.data };
     WILD_LIFE_DATA.push({taxaId: kingdom.id, data: data});
   }
-   else {
-    return;
-  }
+
+  return query;
 };
 

@@ -1,14 +1,12 @@
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import KingdomCard from "../components/KingdomCard";
 import { downLoadWildLifeData } from "../utils/inat";
 import { WILD_LIFE_DATA, CLIMBING_ZONE, KINGDOM } from "../utils/Constants";
 
 const MainScreen = ({ navigation }) => {
-  downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.animalia);
-  downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.plantae);
-  downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.funga);
-
-  const getTotalObservations = () => {};
+  let query1 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.animalia);
+  let query2 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.plantae);
+  let query3 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.funga);
 
   const getTotalTaxaObservations = (taxaId) => {
     return WILD_LIFE_DATA.find((w) => w["taxaId"] === taxaId)["data"][
@@ -16,42 +14,46 @@ const MainScreen = ({ navigation }) => {
     ]["total_results"];
   };
 
-  return (
-    <View style={styles.screenContainer}>
-      <View>
-        <KingdomCard
-          climbingZone={CLIMBING_ZONE.elmanzano}
-          kingdom={KINGDOM.animalia}
-          navigation={navigation}
-          total_count={getTotalTaxaObservations(KINGDOM.animalia.id)}
-        >
-          Reino Animal
-        </KingdomCard>
-      </View>
+  if (query1.isLoading || query2.isLoading || query3.isLoading) {
+    return;
+  } else {
+    return (
+      <View style={styles.screenContainer}>
+        <View>
+          <KingdomCard
+            climbingZone={CLIMBING_ZONE.elmanzano}
+            kingdom={KINGDOM.animalia}
+            navigation={navigation}
+            total_count={getTotalTaxaObservations(KINGDOM.animalia.id)}
+          >
+            Reino Animal
+          </KingdomCard>
+        </View>
 
-      <View>
-        <KingdomCard
-          climbingZone={CLIMBING_ZONE.elmanzano}
-          kingdom={KINGDOM.plantae}
-          navigation={navigation}
-          total_count={getTotalTaxaObservations(KINGDOM.plantae.id)}
-        >
-          Reino Planta
-        </KingdomCard>
-      </View>
+        <View>
+          <KingdomCard
+            climbingZone={CLIMBING_ZONE.elmanzano}
+            kingdom={KINGDOM.plantae}
+            navigation={navigation}
+            total_count={getTotalTaxaObservations(KINGDOM.plantae.id)}
+          >
+            Reino Planta
+          </KingdomCard>
+        </View>
 
-      <View>
-        <KingdomCard
-          climbingZone={CLIMBING_ZONE.elmanzano}
-          kingdom={KINGDOM.funga}
-          navigation={navigation}
-          total_count={getTotalTaxaObservations(KINGDOM.funga.id)}
-        >
-          Reino Funga
-        </KingdomCard>
+        <View>
+          <KingdomCard
+            climbingZone={CLIMBING_ZONE.elmanzano}
+            kingdom={KINGDOM.funga}
+            navigation={navigation}
+            total_count={getTotalTaxaObservations(KINGDOM.funga.id)}
+          >
+            Reino Funga
+          </KingdomCard>
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
 
 export default MainScreen;

@@ -11,12 +11,10 @@ const windowHeight = Dimensions.get("window").height;
 const FieldGuideScreen = ({ route }) => {
   for (let i = 0; i < MIN_OBS; i++) {}
 
-  console.log(route.para);
   const observation = WILD_LIFE_DATA.find(
     (w) => w["taxaId"] === route.params.taxaId
-  )["data"]["observations"]["results"][0];
+  )["data"]["observations"]["results"][1];
 
-  console.log(Object.keys(observation));
   return (
     <View style={styles.fieldWildLifeContainer}>
       <WildLifeCard observation={observation} />
