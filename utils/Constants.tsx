@@ -4,14 +4,19 @@ export const KINGDOM = {
     animalia: {
       id: 1,
       color: '#896244ff',
+      name: 'Reino Animal',
     },
     plantae: {
       id: 47126,
       color: '#65985aff',
+      name: 'Reino Planta',
+
     },
     funga: {
       id: 47170,
       color: '#7a5472ff',
+      name: 'Reino Fungi',
+
     },
   };
   

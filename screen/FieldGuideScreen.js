@@ -12,7 +12,7 @@ const windowHeight = Dimensions.get("window").height;
 const FieldGuideScreen = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Reino",
+      title: route.params.title,
     });
   }, [navigation]);
 
@@ -35,5 +35,8 @@ const styles = StyleSheet.create({
   },
   fieldWildLifeContainer: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "red",
   },
 });
