@@ -10,17 +10,15 @@ let photoHeight = windowHeight * 0.5;
 
 export const WildLifeCard = ({ position, observation }) => {
 
-
-  const day = observation["observed_on_details"]["day"];
-  const month = observation["observed_on_details"]["month"];
-  const year = observation["observed_on_details"]["year"];
-  const date = day + "/" + month + "/" + year;
-  const userName = observation["user"]["name"];
-  const climbingZone = "El Manzano";
-  let communName = observation["taxon"]["preferred_common_name"];
-  const cientificName = observation["taxon"]["name"];
-  communName = communName ? communName : "Desconocido";
-  const image_uri = getPhotoImageUri(observation);
+  let day = observation["observed_on_details"]["day"] ?? '??';
+  let month = observation["observed_on_details"]["month"] ?? '??';
+  let year = observation["observed_on_details"]["year"]  ?? '????';
+  let date = day + "/" + month + "/" + year;
+  let userName = observation["user"]["name"] ?? 'Usuario desconocido';
+  let climbingZone = "El Manzano" ?? 'Desconocido';
+  let communName = observation["taxon"]["preferred_common_name"] ?? 'Sin nombre común';
+  let cientificName = observation["taxon"]["name"] ?? 'Sin nombre científico';
+  let image_uri = getPhotoImageUri(observation);
 
   setPhotoDimensions(observation);
 
@@ -30,7 +28,6 @@ export const WildLifeCard = ({ position, observation }) => {
 
 
   const displayTextInfo = () => {
-
     if(position === 'middle'){
     return (        
     <View  style={[styles.infoContainer,{bottom: cardWidth*0.1, left:cardHeight*0.02}]}>
@@ -51,7 +48,6 @@ export const WildLifeCard = ({ position, observation }) => {
       <Text  style={styles.infoText}>{date}</Text>
     </View>);
     }
-
     return;
   }
   return (
