@@ -1,5 +1,5 @@
 import {Text, Image, Dimensions, View, StyleSheet, Pressable } from "react-native";
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import ConservationStatusBar from "./svg/ConservationStatusBar";
 
 const windowWidth = Dimensions.get("window").width;
@@ -8,7 +8,9 @@ const windowHeight = Dimensions.get("window").height;
 let photoWidth = windowWidth * 0.6;
 let photoHeight = windowHeight * 0.5;
 
-export const WildLifeCard = ({ observation }) => {
+export const WildLifeCard = ({ position, observation }) => {
+
+
   const day = observation["observed_on_details"]["day"];
   const month = observation["observed_on_details"]["month"];
   const year = observation["observed_on_details"]["year"];
@@ -26,31 +28,33 @@ export const WildLifeCard = ({ observation }) => {
   const [cardWidth, setCardWidth] = useState(windowWidth * 0.6);
   const [cardHeight, setCardHeight] = useState(windowHeight * 0.5);
 
-  useEffect(() => {
-      if(!photoZoomIn){
-        setCardWidth(windowWidth * 0.6);
-        setCardHeight(windowHeight * 0.5);
-      }
-      else{
-        setCardWidth(windowWidth * 0.6);
-        setCardHeight(windowHeight * 0.5);
-      }
-    }, [photoZoomIn]);
 
+  const displayTextInfo = () => {
 
-  const wildCardLifeOnPressHandler = () => {
-    if(!photoZoomIn){
-      setPhotoZoomIn(true);
+    if(position === 'middle'){
+    return (        
+    <View  style={[styles.infoContainer,{bottom: cardWidth*0.1, left:cardHeight*0.02}]}>
+      <Text  style={[styles.infoText,{ fontSize: 14}]}>
+        {communName}
+      </Text>
+      <Text
+        style={[styles.infoText,{
+          fontStyle: "italic",
+        }]}
+      >
+        {"("+cientificName+")"}
+      </Text>
+
+      <ConservationStatusBar consevationStatus={''} width={80} height={10}/>
+      <Text style={styles.infoText}>{climbingZone}</Text>
+      <Text  style={styles.infoText}>{userName}</Text>
+      <Text  style={styles.infoText}>{date}</Text>
+    </View>);
     }
-    else{
-      setPhotoZoomIn(false);
-    }
+
     return;
   }
-
   return (
-    <View style={styles.outterContainer}>
-    <Pressable onPress={wildCardLifeOnPressHandler}>
       <View style={styles.imageContainer}>
         <Image
           style={{
@@ -61,44 +65,29 @@ export const WildLifeCard = ({ observation }) => {
             width: cardWidth,
             height: cardHeight,
           }}
-        />
-        <View  style={[styles.infoContainer,{bottom: cardWidth*0.1, left:cardHeight*0.02}]}>
-          <Text  style={[styles.infoText,{ fontSize: 14}]}>
-            {communName}
-          </Text>
-          <Text
-            style={[styles.infoText,{
-              fontStyle: "italic",
-            }]}
-          >
-            {"("+cientificName+")"}
-          </Text>
+        ></Image>
 
-          <ConservationStatusBar consevationStatus={''} width={80} height={10}/>
-          <Text style={styles.infoText}>{climbingZone}</Text>
-          <Text  style={styles.infoText}>{userName}</Text>
-          <Text  style={styles.infoText}>{date}</Text>
-        </View>
+        {displayTextInfo()}
+
       </View>
-    </Pressable>
-  </View>
+
 
   );
 };
 
 const styles = StyleSheet.create({
 
-  outterContainer: {
-    elevation: 6,
-    shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-  },
   imageContainer: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
     overflow:'hidden',  
+    flex: 1,
+    borderRadius: 10,
+  },
+
+  infoText: {
+    color: "white", 
+    fontSize: 8, 
+    fontWeight: "bold"
   },
 
   infoContainer: {
@@ -108,18 +97,9 @@ const styles = StyleSheet.create({
     left: 10,
   },
 
-  infoText: {
-    color: "white", 
-    fontSize: 8, 
-    fontWeight: "bold"
-  }
+
 
 });
-
-
-const getConservationStatus = (observation) => {
-  return '';
-}
 
 const getPhotoImageUri = (observation) => {
   const photo_id = observation["photos"][0]["id"];

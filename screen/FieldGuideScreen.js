@@ -10,13 +10,16 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const FieldGuideScreen = ({ navigation, route }) => {
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const [photoIndex, setPhotoIndex] = useState(5);
 
-  const swipeRight = () => {
+  const clickRight = () => {
+    console.log("swipeRight");
     setPhotoIndex(photoIndex + 1);
   };
 
-  const swipeLeft = () => {
+  const clickLeft = () => {
+    console.log("swipeLeft");
+
     if (photoIndex === 0) {
       setPhotoIndex(0);
     } else {
@@ -30,19 +33,30 @@ const FieldGuideScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const observation = WILD_LIFE_DATA.find(
+  const observationLeft = WILD_LIFE_DATA.find(
+    (w) => w["taxaId"] === route.params.taxaId
+  )["data"]["observations"]["results"][photoIndex - 1];
+
+  const observationMiddle = WILD_LIFE_DATA.find(
     (w) => w["taxaId"] === route.params.taxaId
   )["data"]["observations"]["results"][photoIndex];
 
+  const observationRight = WILD_LIFE_DATA.find(
+    (w) => w["taxaId"] === route.params.taxaId
+  )["data"]["observations"]["results"][photoIndex + 1];
+
   return (
     <View style={styles.fieldGuideContainer}>
-      <Pressable onPress={swipeLeft}>
-        <View style={styles.leftPressedContainer}></View>
+      <Pressable onPress={clickLeft} style={styles.leftPressedContainer}>
+        <WildLifeCard observation={observationLeft} position={"left"} />
       </Pressable>
-      <WildLifeCard style={styles.cardContainer} observation={observation} />
 
-      <Pressable onPress={swipeRight}>
-        <View style={styles.rightPressedContainer}></View>
+      <Pressable style={styles.cardContainer}>
+        <WildLifeCard observation={observationMiddle} position={"middle"} />
+      </Pressable>
+
+      <Pressable onPress={clickRight} style={styles.rightPressedContainer}>
+        <WildLifeCard observation={observationRight} position={"right"} />
       </Pressable>
     </View>
   );
@@ -59,22 +73,43 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    //backgroundColor: "red",
   },
   cardContainer: {
-    flex: 1,
+    flex: 3,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "blue",
+    overflow: "hidden",
+    height: 400,
+    zIndex: 1,
+    transform: [{ scale: 1.1 }],
+
+    //backgroundColor: "blue",
   },
   rightPressedContainer: {
     flex: 1,
+    alignItems: "flex-start",
+    opacity: 0.3,
+    height: 350,
+    transform: [
+      { scale: 0.9 },
+      { rotateZ: "30deg" },
+      { translateX: -50 },
+      { translateY: 20 },
+    ],
+
     //backgroundColor: "red",
-    width: 100,
   },
   leftPressedContainer: {
     flex: 1,
-    //backgroundColor: "green",
-    width: 100,
+    alignItems: "flex-start",
+    opacity: 0.3,
+    height: 350,
+    transform: [
+      { scale: 0.9 },
+      { rotateZ: "-30deg" },
+      { translateX: -100 },
+      { translateY: 20 },
+    ],
+    //backgroundColor: "red",
   },
 });
