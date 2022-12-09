@@ -10,16 +10,13 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const FieldGuideScreen = ({ navigation, route }) => {
-  const [photoIndex, setPhotoIndex] = useState(5);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   const clickRight = () => {
-    console.log("swipeRight");
     setPhotoIndex(photoIndex + 1);
   };
 
   const clickLeft = () => {
-    console.log("swipeLeft");
-
     if (photoIndex === 0) {
       setPhotoIndex(0);
     } else {
@@ -45,19 +42,34 @@ const FieldGuideScreen = ({ navigation, route }) => {
     (w) => w["taxaId"] === route.params.taxaId
   )["data"]["observations"]["results"][photoIndex + 1];
 
+  const leftCard = () => {
+    if (observationLeft) {
+      return (
+        <Pressable onPress={clickLeft} style={styles.leftPressedContainer}>
+          <WildLifeCard observation={observationLeft} position={"left"} />
+        </Pressable>
+      );
+    }
+    return;
+  };
+  const rightCard = () => {
+    if (observationRight) {
+      return (
+        <Pressable onPress={clickRight} style={styles.rightPressedContainer}>
+          <WildLifeCard observation={observationRight} position={"left"} />
+        </Pressable>
+      );
+    }
+    return;
+  };
+
   return (
     <View style={styles.fieldGuideContainer}>
-      <Pressable onPress={clickLeft} style={styles.leftPressedContainer}>
-        <WildLifeCard observation={observationLeft} position={"left"} />
-      </Pressable>
-
+      {leftCard()}
       <Pressable style={styles.cardContainer}>
         <WildLifeCard observation={observationMiddle} position={"middle"} />
       </Pressable>
-
-      <Pressable onPress={clickRight} style={styles.rightPressedContainer}>
-        <WildLifeCard observation={observationRight} position={"right"} />
-      </Pressable>
+      {rightCard()}
     </View>
   );
 };
