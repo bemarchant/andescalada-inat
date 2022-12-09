@@ -32,8 +32,8 @@ export const WildLifeCard = ({ observation }) => {
         setCardHeight(windowHeight * 0.5);
       }
       else{
-        setCardWidth(windowWidth * 1.0);
-        setCardHeight(windowHeight * 1.0);
+        setCardWidth(windowWidth * 0.6);
+        setCardHeight(windowHeight * 0.5);
       }
     }, [photoZoomIn]);
 
@@ -49,8 +49,7 @@ export const WildLifeCard = ({ observation }) => {
   }
 
   return (
-    <View>
-    
+    <View style={styles.outterContainer}>
     <Pressable onPress={wildCardLifeOnPressHandler}>
       <View style={styles.imageContainer}>
         <Image
@@ -75,19 +74,13 @@ export const WildLifeCard = ({ observation }) => {
             {"("+cientificName+")"}
           </Text>
 
-          <ConservationStatusBar consevationStatus={''} height={20}/>
+          <ConservationStatusBar consevationStatus={''} width={80} height={10}/>
           <Text style={styles.infoText}>{climbingZone}</Text>
           <Text  style={styles.infoText}>{userName}</Text>
           <Text  style={styles.infoText}>{date}</Text>
-
         </View>
-
       </View>
-      
-
     </Pressable>
-
-
   </View>
 
   );
@@ -95,14 +88,17 @@ export const WildLifeCard = ({ observation }) => {
 
 const styles = StyleSheet.create({
 
+  outterContainer: {
+    elevation: 6,
+    shadowColor: "black",
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
+  },
   imageContainer: {
-    // backgroundColor: 'pink',
     // justifyContent: 'center',
     // alignItems: 'center',
-  },
-
-  wildLifeCardContainer: {
-    //backgroundColor: 'gray',
+    overflow:'hidden',  
   },
 
   infoContainer: {
