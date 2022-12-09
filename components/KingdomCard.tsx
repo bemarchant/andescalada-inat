@@ -7,8 +7,8 @@ import PlantaeKingdomIcon from "./svg/PlantaeKingdomIcon";
 
 const KingdomCard = ({ navigation, kingdom, total_count}) => {
     return (
-    <View style={styles.kingdomContainer}>
-      <Pressable  onPress={() => navigation.navigate('FieldGuideScreen', {title: kingdom.name, color: kingdom.color, taxaId: kingdom.id})}>
+    <View>
+      <Pressable onPress={() => navigation.navigate('FieldGuideScreen', {title: kingdom.name, color: kingdom.color, taxaId: kingdom.id})}>
         <View
           style={[
             styles.kingdomBarContainer,
@@ -20,8 +20,6 @@ const KingdomCard = ({ navigation, kingdom, total_count}) => {
           </View>
 
           <Text style={styles.kingdomText}> {total_count} </Text>
-
-
         </View>
       </Pressable>
     </View>
@@ -43,15 +41,19 @@ const getKingdomIcon = (taxa_id) => {
 }
 
 const styles = StyleSheet.create({
-  kingdomContainer: {
-  },
-
+  
   kingdomBarContainer: {
     flexDirection: "row",
     margin: 10,
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "flex-start",
+    overflow: "visible",
+    elevation: 6,
+    shadowColor: "black",
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
   },
 
   kingdomText: {
@@ -64,6 +66,8 @@ const styles = StyleSheet.create({
 
   kingdomIcon: {
     width: 50,
+
+
     //backgroundColor: 'red',
 
   },
