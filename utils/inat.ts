@@ -3,12 +3,13 @@ const observationPath = "observations/";
 import { WILD_LIFE_DATA } from "./Constants";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchObservations = ({ taxon_id, lng, lat, radius }) => {
+const fetchObservations = ({ taxon_id, lng, lat, radius, locale}) => {
   const paramsObj = {
     taxon_id,
     lng,
     lat,
     radius,
+    locale,
   };
 
   const searchParams = new URLSearchParams(paramsObj);
@@ -22,6 +23,7 @@ export const getObservation = async (climbingZone, kingdom_id) => {
     lng: climbingZone.lng,
     lat: climbingZone.lat,
     radius: climbingZone.radius,
+    locale: 'es',
   });
   data = await res.json();
 
