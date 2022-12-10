@@ -5,11 +5,10 @@ import ConservationStatusBar from "./svg/ConservationStatusBar";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-let photoWidth = windowWidth * 0.6;
-let photoHeight = windowHeight * 0.5;
-
 export const WildLifeCard = ({ position, observation }) => {
-
+  if(!observation["observed_on_details"]){
+    return;
+  }
   let day = observation["observed_on_details"]["day"] ?? '??';
   let month = observation["observed_on_details"]["month"] ?? '??';
   let year = observation["observed_on_details"]["year"]  ?? '????';
@@ -115,8 +114,8 @@ const getPhotoFileFormat = (urlPhoto: string) => {
 };
 
 const setPhotoDimensions = (observation) => {
-  photoHeight = observation["photos"][0]["original_dimensions"]["height"];
-  photoWidth = observation["photos"][0]["original_dimensions"]["width"];
+  //photoHeight = observation["photos"][0]["original_dimensions"]["height"];
+  //photoWidth = observation["photos"][0]["original_dimensions"]["width"];
   return;
 }
 
