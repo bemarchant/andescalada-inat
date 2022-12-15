@@ -9,19 +9,35 @@ let WildLifeData = WILD_LIFE_DATA;
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+const getObservation = (photoIndex, route) => {
+  return WILD_LIFE_DATA.find((w) => w["taxaId"] === route.params.taxaId)[
+    "data"
+  ]["observations"]["results"][photoIndex];
+};
+
 const FieldGuideScreen = ({ navigation, route }) => {
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const [photoIndex, setPhotoIndex] = useState(4);
 
-  const clickRight = () => {
-    setPhotoIndex(photoIndex + 1);
-  };
-
-  const clickLeft = () => {
-    if (photoIndex === 0) {
-      setPhotoIndex(0);
-    } else {
-      setPhotoIndex(photoIndex - 1);
+  const onPressHandler = (position) => {
+    console.log("onPress");
+    console.log(position);
+    if (position === "right") {
+      setPhotoIndex(photoIndex + 1);
+      console.log("right");
+      return;
+    } else if (position === "middle") {
+      console.log("middle");
+      return;
+    } else if (position === "left") {
+      console.log("left");
+      if (photoIndex === 0) {
+        setPhotoIndex(0);
+      } else {
+        setPhotoIndex(photoIndex - 1);
+      }
+      return;
     }
+    return;
   };
 
   useLayoutEffect(() => {
@@ -30,22 +46,17 @@ const FieldGuideScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const observationLeft = WILD_LIFE_DATA.find(
-    (w) => w["taxaId"] === route.params.taxaId
-  )["data"]["observations"]["results"][photoIndex - 1];
-
-  const observationMiddle = WILD_LIFE_DATA.find(
-    (w) => w["taxaId"] === route.params.taxaId
-  )["data"]["observations"]["results"][photoIndex];
-
-  const observationRight = WILD_LIFE_DATA.find(
-    (w) => w["taxaId"] === route.params.taxaId
-  )["data"]["observations"]["results"][photoIndex + 1];
+  const observationLeft = getObservation(photoIndex - 1, route);
+  const observationMiddle = getObservation(photoIndex, route);
+  const observationRight = getObservation(photoIndex + 1, route);
 
   const leftCard = () => {
     if (observationLeft) {
       return (
-        <Pressable onPress={clickLeft} style={styles.leftPressedContainer}>
+        <Pressable
+          onPress={onPressHandler.bind(this, "left")}
+          style={styles.leftPressedContainer}
+        >
           <WildLifeCard observation={observationLeft} position={"left"} />
         </Pressable>
       );
@@ -55,8 +66,24 @@ const FieldGuideScreen = ({ navigation, route }) => {
   const rightCard = () => {
     if (observationRight) {
       return (
-        <Pressable onPress={clickRight} style={styles.rightPressedContainer}>
-          <WildLifeCard observation={observationRight} position={"left"} />
+        <Pressable
+          onPress={onPressHandler.bind(this, "right")}
+          style={styles.rightPressedContainer}
+        >
+          <WildLifeCard observation={observationRight} position={"right"} />
+        </Pressable>
+      );
+    }
+    return;
+  };
+  const middleCard = () => {
+    if (observationMiddle) {
+      return (
+        <Pressable
+          onPress={onPressHandler.bind(this, "middle")}
+          style={styles.cardContainer}
+        >
+          <WildLifeCard observation={observationMiddle} position={"middle"} />
         </Pressable>
       );
     }
@@ -66,9 +93,7 @@ const FieldGuideScreen = ({ navigation, route }) => {
   return (
     <View style={styles.fieldGuideContainer}>
       {leftCard()}
-      <Pressable style={styles.cardContainer}>
-        <WildLifeCard observation={observationMiddle} position={"middle"} />
-      </Pressable>
+      {middleCard()}
       {rightCard()}
     </View>
   );
@@ -91,7 +116,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
-    height: 400,
+    height: windowHeight * 0.5,
+
     zIndex: 1,
     transform: [{ scale: 1.1 }],
 
@@ -101,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     opacity: 0.3,
-    height: 350,
+    height: windowHeight * 0.7,
     transform: [
       { scale: 0.9 },
       { rotateZ: "30deg" },
@@ -115,7 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     opacity: 0.3,
-    height: 350,
+    height: windowHeight * 0.7,
     transform: [
       { scale: 0.9 },
       { rotateZ: "-30deg" },
