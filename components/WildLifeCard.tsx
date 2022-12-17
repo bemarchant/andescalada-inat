@@ -60,7 +60,7 @@ export const WildLifeCard = ({ position, observation }) => {
             width: cardWidth,
             height: cardHeight,
           }}
-        ></Image>
+        />
 
         {displayTextInfo()}
 
