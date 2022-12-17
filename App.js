@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MainScreen from "./screen/MainScreen";
 import FieldGuideScreen from "./screen/FieldGuideScreen";
+import EditWildLifeCardScreen from "./screen/EditWildLifeCardScreen";
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,14 @@ export default function App() {
           <Stack.Screen
             name="FieldGuideScreen"
             component={FieldGuideScreen}
+            options={{
+              title: "El Manzano",
+            }}
+          />
+
+          <Stack.Screen
+            name="EditWildLifeCardScreen"
+            component={EditWildLifeCardScreen}
             options={{
               title: "El Manzano",
             }}
