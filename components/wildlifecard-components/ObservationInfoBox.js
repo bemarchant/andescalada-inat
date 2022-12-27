@@ -18,6 +18,7 @@ import { UserName } from "./UserName";
 import { DateObservation } from "./DateObservation";
 import { PopMenuContext } from "../../store/context/popMenu-context";
 import { DISTRIBUTIONS } from "../../utils";
+import { getUserNameObservation } from "../../utils";
 
 let windowWidth = Dimensions.get("window").width;
 let windowHeight = Dimensions.get("window").height;
@@ -35,7 +36,7 @@ export const ObservationInfoBox = ({ observation }) => {
   let month = observation?.["observed_on_details"]?.["month"] ?? "??";
   let year = observation?.["observed_on_details"]?.["year"] ?? "????";
   let date = day + "/" + month + "/" + year;
-  let userName = observation?.["user"]?.["name"] ?? "Usuario desconocido";
+  let userName = getUserNameObservation(observation);
   let climbingZone = "El Manzano" ?? "Desconocido";
   let cientificName =
     observation?.["taxon"]?.["name"] ?? "Sin nombre científico";
