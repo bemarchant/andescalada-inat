@@ -4,7 +4,7 @@ import { useState } from "react";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export const WildLifeCard = ({ navigation, observation }) => {
+export const WildLifeCard = ({ observation }) => {
   let image_uri = getPhotoImageUri(observation);
 
   setPhotoDimensions(observation);
