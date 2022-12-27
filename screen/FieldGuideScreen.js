@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useMemo } from "react";
 import { Dimensions, View, StyleSheet, Pressable } from "react-native";
 import { WildLifeCard } from "../components/WildLifeCard";
 import { WILD_LIFE_DATA } from "../utils/Constants";
@@ -16,20 +16,25 @@ const getObservation = (photoIndex, route) => {
 };
 
 const FieldGuideScreen = ({ navigation, route }) => {
-  const [photoIndex, setPhotoIndex] = useState(4);
+  const wildLifeDeck = useMemo(() => {
+    WILD_LIFE_DATA.map((w) => (
+      <WildLifeCard observation={w} position={"left"} />
+    ));
+  }, []);
 
+  const [photoIndex, setPhotoIndex] = useState(0);
   const onPressHandler = (position) => {
-    console.log("onPress");
-    console.log(position);
     if (position === "right") {
       setPhotoIndex(photoIndex + 1);
-      console.log("right");
       return;
     } else if (position === "middle") {
-      console.log("middle");
+      navigation.navigate("EditWildLifeCardScreen", {
+        title: route.params.title,
+        color: route.params.color,
+        taxaId: route.params.id,
+      });
       return;
     } else if (position === "left") {
-      console.log("left");
       if (photoIndex === 0) {
         setPhotoIndex(0);
       } else {

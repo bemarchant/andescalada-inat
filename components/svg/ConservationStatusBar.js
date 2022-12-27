@@ -1,7 +1,36 @@
 import * as React from "react";
-import Svg, { Defs, LinearGradient, Stop, Path } from "react-native-svg";
+import Svg, {
+  Circle,
+  Defs,
+  LinearGradient,
+  Stop,
+  Path,
+} from "react-native-svg";
 
-function ConservationStatusBar(props) {
+function ConservationStatusBar(props, status) {
+  let cx;
+  let dx = 15.636;
+  status = "EW";
+  if (status === "NE") {
+    cx = 0 * dx;
+  } else if (status === "DD") {
+    cx = 1 * dx;
+  } else if (status === "LC") {
+    cx = 2 * dx;
+  } else if (status === "NT") {
+    cx = 3 * dx;
+  } else if (status === "VU") {
+    cx = 4 * dx;
+  } else if (status === "EN") {
+    cx = 5 * dx;
+  } else if (status === "CR") {
+    cx = 6 * dx;
+  } else if (status === "EW") {
+    cx = 7 * dx;
+  } else if (status === "EX") {
+    cx = 8 * dx;
+  }
+
   return (
     <Svg
       width="140.71626mm"
@@ -21,7 +50,7 @@ function ConservationStatusBar(props) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(-5.292 -348.329)"
         >
-          <Stop offset={0} stopColor="#000015" stopOpacity={1} />
+          <Stop offset={0} stopColor="#000051" stopOpacity={1} />
           <Stop offset={1} stopColor="#000015" stopOpacity={0.95686275} />
         </LinearGradient>
         <LinearGradient
@@ -34,7 +63,7 @@ function ConservationStatusBar(props) {
           gradientTransform="translate(-5.292 -352.682)"
         >
           <Stop offset={0} stopColor="#e40521" stopOpacity={1} />
-          <Stop offset={1} stopColor="#000015" stopOpacity={1} />
+          <Stop offset={1} stopColor="#000051" stopOpacity={1} />
         </LinearGradient>
         <LinearGradient
           id="j"
@@ -190,6 +219,23 @@ function ConservationStatusBar(props) {
         strokeLinecap="butt"
         strokeLinejoin="miter"
         strokeOpacity={1}
+      />
+
+      <Circle
+        style={{
+          fill: "#f5677a",
+          fillOpacity: 1,
+          stroke: "#c91c32",
+          strokeWidth: 0.558484,
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeDasharray: "none",
+          strokeOpacity: 1,
+          stopColor: "#000",
+        }}
+        cx={cx}
+        cy={4.201}
+        r={1.705}
       />
     </Svg>
   );
