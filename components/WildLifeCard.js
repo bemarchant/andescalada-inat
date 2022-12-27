@@ -1,5 +1,4 @@
 import { Image, Dimensions, View, StyleSheet } from "react-native";
-import { useState } from "react";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -7,11 +6,8 @@ const windowHeight = Dimensions.get("window").height;
 export const WildLifeCard = ({ observation }) => {
   let image_uri = getPhotoImageUri(observation);
 
-  setPhotoDimensions(observation);
-
-  const [photoZoomIn, setPhotoZoomIn] = useState(false);
-  const [cardWidth, setCardWidth] = useState(windowWidth * 0.6);
-  const [cardHeight, setCardHeight] = useState(windowHeight * 0.5);
+  const cardWidth = windowWidth * 0.6;
+  const cardHeight = windowHeight * 0.5;
 
   return (
     <View style={styles.imageContainer}>
@@ -66,10 +62,4 @@ const getPhotoBaseUrl = (urlPhoto) => {
 const getPhotoFileFormat = (urlPhoto) => {
   const len = urlPhoto.split(".").length;
   return urlPhoto.split(".")[len - 1];
-};
-
-const setPhotoDimensions = (observation) => {
-  //photoHeight = observation["photos"][0]["original_dimensions"]["height"];
-  //photoWidth = observation["photos"][0]["original_dimensions"]["width"];
-  return;
 };

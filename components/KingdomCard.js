@@ -7,7 +7,6 @@ import {
 } from "./icons";
 
 const KingdomCard = ({ navigation, kingdom, total_count }) => {
-  console.log("KingdomCard");
   return (
     <View>
       <Pressable
