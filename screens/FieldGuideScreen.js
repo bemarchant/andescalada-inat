@@ -3,10 +3,6 @@ import { Dimensions, View, StyleSheet, Pressable } from "react-native";
 import { WildLifeCard } from "../components/WildLifeCard";
 import { WILD_LIFE_DATA } from "../utils";
 
-const MIN_OBS = 5;
-let WildLifeData = WILD_LIFE_DATA;
-
-const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const getObservation = (photoIndex, route) => {
@@ -16,13 +12,17 @@ const getObservation = (photoIndex, route) => {
 };
 
 export const FieldGuideScreen = ({ navigation, route }) => {
+  console.log("FieldGuideScreen");
+
   const wildLifeDeck = useMemo(() => {
-    WILD_LIFE_DATA.map((w) => (
-      <WildLifeCard observation={w} position={"left"} />
-    ));
-  }, []);
+    console.log("wildLifeDeck");
+    return WILD_LIFE_DATA.filter((w) => w["taxaId"] === route.params.taxaId)[0][
+      "data"
+    ]["observations"]["results"].map((w) => <WildLifeCard observation={w} />);
+  }, [route.params.taxaId]);
 
   const [photoIndex, setPhotoIndex] = useState(0);
+
   const onPressHandler = (position) => {
     if (position === "right") {
       setPhotoIndex(photoIndex + 1);
@@ -60,7 +60,7 @@ export const FieldGuideScreen = ({ navigation, route }) => {
           onPress={onPressHandler.bind(this, "left")}
           style={styles.leftPressedContainer}
         >
-          <WildLifeCard observation={observationLeft} position={"left"} />
+          {wildLifeDeck[photoIndex - 1]}
         </Pressable>
       );
     }
@@ -73,7 +73,7 @@ export const FieldGuideScreen = ({ navigation, route }) => {
           onPress={onPressHandler.bind(this, "right")}
           style={styles.rightPressedContainer}
         >
-          <WildLifeCard observation={observationRight} position={"right"} />
+          {wildLifeDeck[photoIndex + 1]}
         </Pressable>
       );
     }
@@ -86,7 +86,7 @@ export const FieldGuideScreen = ({ navigation, route }) => {
           onPress={onPressHandler.bind(this, "middle")}
           style={styles.cardContainer}
         >
-          <WildLifeCard observation={observationMiddle} />
+          {wildLifeDeck[photoIndex]}
         </Pressable>
       );
     }
