@@ -1,9 +1,9 @@
 import { View, StyleSheet } from "react-native";
 import KingdomCard from "../components/KingdomCard";
 import { downLoadWildLifeData } from "../utils/inat";
-import { WILD_LIFE_DATA, CLIMBING_ZONE, KINGDOM } from "../utils/Constants";
+import { WILD_LIFE_DATA, CLIMBING_ZONE, KINGDOM } from "../utils/constants";
 
-const MainScreen = ({ navigation }) => {
+export const MainScreen = ({ navigation }) => {
   let query1 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.animalia);
   let query2 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.plantae);
   let query3 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.funga);
@@ -55,8 +55,6 @@ const MainScreen = ({ navigation }) => {
     );
   }
 };
-
-export default MainScreen;
 
 const styles = StyleSheet.create({
   screenContainer: {

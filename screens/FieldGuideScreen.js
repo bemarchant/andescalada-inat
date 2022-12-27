@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState, useMemo } from "react";
 import { Dimensions, View, StyleSheet, Pressable } from "react-native";
-import { WildLifeCard } from "../components";
+import { WildLifeCard } from "../components/WildLifeCard";
 import { WILD_LIFE_DATA } from "../utils";
 
 const MIN_OBS = 5;
@@ -15,7 +15,7 @@ const getObservation = (photoIndex, route) => {
   ]["observations"]["results"][photoIndex];
 };
 
-const FieldGuideScreen = ({ navigation, route }) => {
+export const FieldGuideScreen = ({ navigation, route }) => {
   const wildLifeDeck = useMemo(() => {
     WILD_LIFE_DATA.map((w) => (
       <WildLifeCard observation={w} position={"left"} />
@@ -103,8 +103,6 @@ const FieldGuideScreen = ({ navigation, route }) => {
     </View>
   );
 };
-
-export default FieldGuideScreen;
 
 const styles = StyleSheet.create({
   optionContainer: {

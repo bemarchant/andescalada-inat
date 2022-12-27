@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { KINGDOM } from "../utils/Constants";
+import { KINGDOM } from "../utils/constants";
 
 import AnimalKingdomIcon from "./svg/AnimalKingdomIcon";
 import FungiKingdomIcon from "./svg/FungiKingdomIcon";
