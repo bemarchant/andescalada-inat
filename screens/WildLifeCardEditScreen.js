@@ -1,4 +1,4 @@
-import { useRef, useContext, useLayoutEffect } from "react";
+import { useRef, useEffect, useContext, useLayoutEffect } from "react";
 import {
   Share,
   Dimensions,
@@ -17,12 +17,17 @@ import {
 import { PopUpMenu } from "../components/PopUpMenu";
 import { PopMenuContext } from "../store/context/popMenu-context";
 import INatCLIcon from "../components/icons/INatCLIcon";
+import { DISTRIBUTIONS } from "../utils";
 
 const windowWidth = Dimensions.get("window").width;
 
 export const WildLifeCardEditScreen = ({ navigation, route }) => {
   const observation = route.params.observation;
   const popMenuCtx = useContext(PopMenuContext);
+
+  useEffect(() => {
+    popMenuCtx.setSelectedOption(DISTRIBUTIONS["NATIVE"]);
+  }, []);
 
   const viewRef = useRef();
   const shareWildLifeCard = async () => {

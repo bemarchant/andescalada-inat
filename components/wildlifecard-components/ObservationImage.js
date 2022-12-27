@@ -6,12 +6,14 @@ import Animated, {
 } from "react-native-reanimated";
 import { getPhotoImageUri } from "../../utils";
 
-let widthPhoto = Dimensions.get("window").width;
-let heightPhoto = Dimensions.get("window").height;
+let widthWindow = Dimensions.get("window").width;
+let heightWindow = Dimensions.get("window").height;
 
 export const ObservationImage = ({ observation }) => {
-  widthPhoto = observation["photos"][0]["original_dimensions"]["width"];
-  heightPhoto = observation["photos"][0]["original_dimensions"]["height"];
+  const widthPhoto =
+    observation["photos"][0]["original_dimensions"]["width"] * 0.6;
+  const heightPhoto =
+    observation["photos"][0]["original_dimensions"]["height"] * 0.5;
 
   const image_uri = getPhotoImageUri(observation);
 
@@ -22,8 +24,8 @@ export const ObservationImage = ({ observation }) => {
   const centerPinchY = useSharedValue(0);
 
   const imageCenter = {
-    x: widthPhoto / 2,
-    y: heightPhoto / 2,
+    x: widthWindow / 2,
+    y: heightWindow / 2,
   };
 
   const pinchImage = Gesture.Pinch().onUpdate((gesture) => {

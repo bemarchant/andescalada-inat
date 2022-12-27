@@ -4,8 +4,8 @@ import Svg, { G, Path, Circle } from "react-native-svg";
 function ClimbZoneIcon(props) {
   return (
     <Svg
-      width={14}
-      height={14}
+      width={16}
+      height={16}
       viewBox="0 0 3.1749999 3.175"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

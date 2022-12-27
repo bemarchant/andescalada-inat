@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   iconContainer: {
     justifyContent: "center",
     marginRight: 6,
-    //backgroundColor: "red",
   },
 
   dateObservationText: {
