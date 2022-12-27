@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState, useMemo } from "react";
 import { Dimensions, View, StyleSheet, Pressable } from "react-native";
-import { WildLifeCard } from "../components/WildLifeCard";
-import { WILD_LIFE_DATA } from "../utils/Constants";
+import { WildLifeCard } from "../components";
+import { WILD_LIFE_DATA } from "../utils";
 
 const MIN_OBS = 5;
 let WildLifeData = WILD_LIFE_DATA;

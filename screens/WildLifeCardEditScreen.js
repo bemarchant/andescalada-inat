@@ -19,7 +19,6 @@ import {
   CLIMBING_ZONE,
   KINGDOM,
   WILD_LIFE_DATA,
-  DISTRIBUTIONS,
   downLoadWildLifeData,
 } from "../utils";
 import { PopMenuContext } from "../store/context/popMenu-context";
