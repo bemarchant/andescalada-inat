@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Circle, Path, G } from "react-native-svg";
 
-function PlantaeKingdomIcon(props) {
+export function PlantaeKingdomIcon(props) {
   return (
     <Svg
       width="56.924999mm"
@@ -55,5 +55,3 @@ function PlantaeKingdomIcon(props) {
     </Svg>
   );
 }
-
-export default PlantaeKingdomIcon;

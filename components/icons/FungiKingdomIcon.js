@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Circle, Path, G } from "react-native-svg";
 
-function FungiKingdomIcon(props) {
+export function FungiKingdomIcon(props) {
   return (
     <Svg
       width="52.328999mm"
@@ -52,5 +52,3 @@ function FungiKingdomIcon(props) {
     </Svg>
   );
 }
-
-export default FungiKingdomIcon;

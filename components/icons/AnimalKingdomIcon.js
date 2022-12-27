@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { G, Circle, Path } from "react-native-svg";
 
-function AnimalKingdomIcon(props) {
+export function AnimalKingdomIcon(props) {
   return (
     <Svg
       width="52.328999mm"
@@ -212,5 +212,3 @@ function AnimalKingdomIcon(props) {
     </Svg>
   );
 }
-
-export default AnimalKingdomIcon;
