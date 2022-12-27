@@ -12,10 +12,7 @@ const getObservation = (photoIndex, route) => {
 };
 
 export const FieldGuideScreen = ({ navigation, route }) => {
-  console.log("FieldGuideScreen");
-
   const wildLifeDeck = useMemo(() => {
-    console.log("wildLifeDeck");
     return WILD_LIFE_DATA.filter((w) => w["taxaId"] === route.params.taxaId)[0][
       "data"
     ]["observations"]["results"].map((w) => <WildLifeCard observation={w} />);

@@ -4,3 +4,6 @@ export { DistributionIcon } from "./DistributionIcon";
 export { INatCLIcon } from "./INatCLIcon";
 export { UserIcon } from "./UserIcon";
 export { ScreenHeaderButton } from "./ScreenHeaderButton";
+export { AnimalKingdomIcon } from "./AnimalKingdomIcon";
+export { FungiKingdomIcon } from "./FungiKingdomIcon";
+export { PlantaeKingdomIcon } from "./PlantaeKingdomIcon";
