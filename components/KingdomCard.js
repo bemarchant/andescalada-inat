@@ -1,11 +1,13 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { KINGDOM } from "../utils/constants";
-
-import AnimalKingdomIcon from "./svg/AnimalKingdomIcon";
-import FungiKingdomIcon from "./svg/FungiKingdomIcon";
-import PlantaeKingdomIcon from "./svg/PlantaeKingdomIcon";
+import {
+  AnimalKingdomIcon,
+  FungiKingdomIcon,
+  PlantaeKingdomIcon,
+} from "./icons";
 
 const KingdomCard = ({ navigation, kingdom, total_count }) => {
+  console.log("KingdomCard");
   return (
     <View>
       <Pressable
