@@ -15,21 +15,15 @@ import {
   ObservationInfoBox,
 } from "../components/wildlifecard-components";
 import { PopUpMenu } from "../components/PopUpMenu";
-import {
-  CLIMBING_ZONE,
-  KINGDOM,
-  WILD_LIFE_DATA,
-  downLoadWildLifeData,
-} from "../utils";
 import { PopMenuContext } from "../store/context/popMenu-context";
 import INatCLIcon from "../components/icons/INatCLIcon";
 
 const windowWidth = Dimensions.get("window").width;
 
-export const WildLifeCardEditScreen = ({ navigation }) => {
+export const WildLifeCardEditScreen = ({ navigation, route }) => {
+  const observation = route.params.observation;
   const popMenuCtx = useContext(PopMenuContext);
 
-  let query1 = downLoadWildLifeData(CLIMBING_ZONE.elmanzano, KINGDOM.animalia);
   const viewRef = useRef();
   const shareWildLifeCard = async () => {
     try {
@@ -59,31 +53,23 @@ export const WildLifeCardEditScreen = ({ navigation }) => {
     });
   });
 
-  if (query1.isLoading) {
-    return;
-  } else {
-    const observation = WILD_LIFE_DATA.find((w) => w["taxaId"] === 1)["data"][
-      "observations"
-    ]["results"][1];
-
-    return (
-      <KeyboardAvoidingView behavior="position" style={styles.rootView}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View>
-            <View style={styles.cardContainer} ref={viewRef}>
-              <ObservationImage observation={observation} />
-              <ObservationInfoBox observation={observation} />
-              <INatCLIcon style={styles.iNatIconContainer} />
-            </View>
-            <PopUpMenu
-              options={popMenuCtx.options}
-              popMenu={popMenuCtx.visibility}
-            />
+  return (
+    <KeyboardAvoidingView behavior="position" style={styles.rootView}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <View style={styles.cardContainer} ref={viewRef}>
+            <ObservationImage observation={observation} />
+            <ObservationInfoBox observation={observation} />
+            <INatCLIcon style={styles.iNatIconContainer} />
           </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    );
-  }
+          <PopUpMenu
+            options={popMenuCtx.options}
+            popMenu={popMenuCtx.visibility}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  );
 };
 
 const styles = StyleSheet.create({

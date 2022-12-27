@@ -28,10 +28,8 @@ export const FieldGuideScreen = ({ navigation, route }) => {
       setPhotoIndex(photoIndex + 1);
       return;
     } else if (position === "middle") {
-      navigation.navigate("EditWildLifeCardScreen", {
-        title: route.params.title,
-        color: route.params.color,
-        taxaId: route.params.id,
+      navigation.navigate("WildLifeCardEditScreen", {
+        observation: getObservation(photoIndex, route),
       });
       return;
     } else if (position === "left") {
@@ -88,7 +86,7 @@ export const FieldGuideScreen = ({ navigation, route }) => {
           onPress={onPressHandler.bind(this, "middle")}
           style={styles.cardContainer}
         >
-          <WildLifeCard observation={observationMiddle} position={"middle"} />
+          <WildLifeCard observation={observationMiddle} />
         </Pressable>
       );
     }
@@ -113,16 +111,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#454545ff",
   },
   cardContainer: {
     flex: 3,
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
-    height: windowHeight * 0.5,
+    height: windowHeight * 0.8,
 
     zIndex: 1,
-    transform: [{ scale: 1.1 }],
+    transform: [{ scale: 1.3 }],
 
     //backgroundColor: "blue",
   },

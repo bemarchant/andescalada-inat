@@ -1,7 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { WildLifeCardEditScreen } from "./screens";
+import {
+  WildLifeCardEditScreen,
+  MainScreen,
+  FieldGuideScreen,
+} from "./screens";
 import PopMenuContextProvider from "./store/context/popMenu-context";
 const queryClient = new QueryClient();
 
@@ -19,7 +23,7 @@ export default function App() {
               contentStyle: { backgroundColor: "black" },
             }}
           >
-            {/* <Stack.Screen
+            <Stack.Screen
               name="MainScreen"
               component={MainScreen}
               options={{ title: "MainScreen" }}
@@ -29,7 +33,7 @@ export default function App() {
               name="FieldGuideScreen"
               component={FieldGuideScreen}
               options={{ title: "FieldGuideScreen" }}
-            /> */}
+            />
 
             <Stack.Screen
               name="WildLifeCardEditScreen"
