@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
   },
 
   infoContainer: {
-    //backgroundColor: "green",
     position: "absolute",
     bottom: windowWidth * 0.06,
     left: windowHeight * 0.02,

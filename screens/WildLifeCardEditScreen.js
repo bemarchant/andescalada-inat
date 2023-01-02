@@ -13,6 +13,7 @@ import ScreenHeaderButton from "../components/icons/ScreenHeaderButton";
 import {
   ObservationImage,
   ObservationInfoBox,
+  ObservationFrame,
 } from "../components/wildlifecard-components";
 import { PopUpMenu } from "../components/PopUpMenu";
 import { PopMenuContext } from "../store/context/popMenu-context";
@@ -64,6 +65,7 @@ export const WildLifeCardEditScreen = ({ navigation, route }) => {
         <View>
           <View style={styles.cardContainer} ref={viewRef}>
             <ObservationImage observation={observation} />
+            <ObservationFrame />
             <ObservationInfoBox observation={observation} />
             <INatCLIcon style={styles.iNatIconContainer} />
           </View>
@@ -85,7 +87,6 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     top: 10,
-    backgroundColor: "#363636ff",
     overflow: "hidden",
     borderRadius: 5,
     height: windowWidth * 1.6,
