@@ -108,14 +108,10 @@ const styles = StyleSheet.create({
   nameContainer: {
     flex: 1,
     flexDirection: "row",
-    //backgroundColor: "green",
   },
   distributionContainer: {
     alignItems: "center",
     justifyContent: "center",
-
-    //backgroundColor: "green",
-
     elevation: 4,
     shadowColor: "black",
     shadowOpacity: 0.4,
@@ -133,6 +129,5 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     overflow: "hidden",
-    //backgroundColor: "red",
   },
 });

@@ -16,12 +16,10 @@ const styles = StyleSheet.create({
   rootView: {
     flex: 1,
     flexDirection: "row",
-    //backgroundColor: "blue",
   },
   iconContainer: {
     justifyContent: "center",
     marginRight: 6,
-    //backgroundColor: "red",
   },
 
   userNameText: {
