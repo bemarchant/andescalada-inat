@@ -47,16 +47,10 @@ export const downLoadWildLifeData = (climbingZone, kingdom) => {
 export const getUserNameObservation = (observation) => {
   const userName = observation?.["user"]?.["name"];
   if (userName === "" || userName === null) {
-    console.log(
-      'observation?.["user"]?.["login"] : ',
-      observation?.["user"]?.["login"]
-    );
     return observation?.["user"]?.["login"];
   } else if (userName) {
-    console.log(observation?.["user"]?.["name"]);
     return observation?.["user"]?.["name"];
   } else {
-    console.log("hola");
     return "Usuario Desconocido";
   }
 };

@@ -11,18 +11,10 @@ let widthWindow = Dimensions.get("window").width;
 let heightWindow = Dimensions.get("window").height;
 
 export const ObservationImage = ({ observation, cardWidth, cardHeight }) => {
-  console.log("widthWindow : ", widthWindow);
-  console.log("heightWindow : ", heightWindow);
-  console.log("cardWidth : ", cardWidth);
-  console.log("cardHeight : ", cardHeight);
-
   const widthPhoto =
     observation["photos"][0]["original_dimensions"]["width"] * 1;
   const heightPhoto =
     observation["photos"][0]["original_dimensions"]["height"] * 1;
-
-  console.log("widthPhoto : ", widthPhoto);
-  console.log("heightPhoto : ", heightPhoto);
 
   const image_uri = getPhotoImageUri(observation);
 
