@@ -1,4 +1,4 @@
-import { Dimensions, View } from "react-native";
+import { Dimensions, View, StyleSheet } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
@@ -6,14 +6,23 @@ import Animated, {
 } from "react-native-reanimated";
 import { getPhotoImageUri } from "../../utils";
 
+let frameColor = "black";
 let widthWindow = Dimensions.get("window").width;
 let heightWindow = Dimensions.get("window").height;
 
-export const ObservationImage = ({ observation }) => {
+export const ObservationImage = ({ observation, cardWidth, cardHeight }) => {
+  console.log("widthWindow : ", widthWindow);
+  console.log("heightWindow : ", heightWindow);
+  console.log("cardWidth : ", cardWidth);
+  console.log("cardHeight : ", cardHeight);
+
   const widthPhoto =
-    observation["photos"][0]["original_dimensions"]["width"] * 0.6;
+    observation["photos"][0]["original_dimensions"]["width"] * 1;
   const heightPhoto =
-    observation["photos"][0]["original_dimensions"]["height"] * 0.5;
+    observation["photos"][0]["original_dimensions"]["height"] * 1;
+
+  console.log("widthPhoto : ", widthPhoto);
+  console.log("heightPhoto : ", heightPhoto);
 
   const image_uri = getPhotoImageUri(observation);
 
@@ -50,17 +59,62 @@ export const ObservationImage = ({ observation }) => {
   const composedGesture = Gesture.Simultaneous(pinchImage, panImage);
 
   return (
-    <View>
+    <View style={{ position: "absolute" }}>
       <GestureDetector gesture={composedGesture}>
-        <Animated.Image
-          style={styleAnimated}
-          source={{
-            uri: image_uri,
-            width: widthPhoto,
-            height: heightPhoto,
-          }}
-        />
+        <Animated.View>
+          <Animated.Image
+            style={styleAnimated}
+            source={{
+              uri: image_uri,
+              width: widthPhoto,
+              height: heightPhoto,
+            }}
+          />
+          <View style={styles.rootContainer}>
+            <View
+              style={[
+                styles.frameContainer,
+                {
+                  width: cardWidth,
+                  height: cardHeight * 0.72,
+                  top: -heightPhoto,
+                },
+              ]}
+            />
+            <View
+              style={[
+                styles.bottomContainer,
+                ,
+                {
+                  width: cardWidth,
+                  height: cardHeight * 0.3,
+                  top: -heightPhoto + cardHeight * 0.72,
+                },
+              ]}
+            />
+          </View>
+        </Animated.View>
       </GestureDetector>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    opacity: 0.4,
+  },
+
+  bottomContainer: {
+    position: "absolute",
+    backgroundColor: frameColor,
+  },
+
+  frameContainer: {
+    position: "absolute",
+    borderWidth: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderColor: frameColor,
+    backgroundColor: "transparent",
+  },
+});

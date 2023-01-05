@@ -21,6 +21,8 @@ import INatCLIcon from "../components/icons/INatCLIcon";
 import { DISTRIBUTIONS } from "../utils";
 
 const windowWidth = Dimensions.get("window").width;
+const cardHeight = windowWidth * 1.6;
+const cardWidth = windowWidth * 0.9;
 
 export const WildLifeCardEditScreen = ({ navigation, route }) => {
   const observation = route.params.observation;
@@ -64,11 +66,15 @@ export const WildLifeCardEditScreen = ({ navigation, route }) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
           <View style={styles.cardContainer} ref={viewRef}>
-            <ObservationImage observation={observation} />
-            <ObservationFrame />
+            <ObservationImage
+              observation={observation}
+              cardHeight={cardHeight}
+              cardWidth={cardWidth}
+            />
             <ObservationInfoBox observation={observation} />
             <INatCLIcon style={styles.iNatIconContainer} />
           </View>
+
           <PopUpMenu
             options={popMenuCtx.options}
             popMenu={popMenuCtx.visibility}
@@ -88,15 +94,16 @@ const styles = StyleSheet.create({
   cardContainer: {
     top: 10,
     overflow: "hidden",
-    borderRadius: 5,
-    height: windowWidth * 1.6,
-    width: windowWidth * 0.9,
+    borderRadius: 10,
+    height: cardHeight,
+    width: cardWidth,
+    backgroundColor: "#654545ff",
   },
   iNatIconContainer: {
     position: "absolute",
-    //backgroundColor: "red",
+    zIndex: 1000,
     right: 20,
     bottom: 30,
-    opacity: 0.4,
+    opacity: 0.7,
   },
 });
