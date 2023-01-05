@@ -13,7 +13,6 @@ import ScreenHeaderButton from "../components/icons/ScreenHeaderButton";
 import {
   ObservationImage,
   ObservationInfoBox,
-  ObservationFrame,
 } from "../components/wildlifecard-components";
 import { PopUpMenu } from "../components/PopUpMenu";
 import { PopMenuContext } from "../store/context/popMenu-context";
