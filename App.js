@@ -7,6 +7,7 @@ import {
   FieldGuideScreen,
 } from "./screens";
 import PopMenuContextProvider from "./store/context/popMenu-context";
+import ImageSettingsContextProvider from "./store/context/imageSettings-context";
 const queryClient = new QueryClient();
 
 const Stack = createNativeStackNavigator();
@@ -15,33 +16,35 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <PopMenuContextProvider>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: "white" },
-              headerTintColor: "gray",
-              contentStyle: { backgroundColor: "black" },
-            }}
-          >
-            <Stack.Screen
-              name="MainScreen"
-              component={MainScreen}
-              options={{ title: "MainScreen" }}
-            />
+        <ImageSettingsContextProvider>
+          <PopMenuContextProvider>
+            <Stack.Navigator
+              screenOptions={{
+                headerStyle: { backgroundColor: "white" },
+                headerTintColor: "gray",
+                contentStyle: { backgroundColor: "black" },
+              }}
+            >
+              <Stack.Screen
+                name="MainScreen"
+                component={MainScreen}
+                options={{ title: "MainScreen" }}
+              />
 
-            <Stack.Screen
-              name="FieldGuideScreen"
-              component={FieldGuideScreen}
-              options={{ title: "FieldGuideScreen" }}
-            />
+              <Stack.Screen
+                name="FieldGuideScreen"
+                component={FieldGuideScreen}
+                options={{ title: "FieldGuideScreen" }}
+              />
 
-            <Stack.Screen
-              name="WildLifeCardEditScreen"
-              component={WildLifeCardEditScreen}
-              options={{ title: "Editor" }}
-            />
-          </Stack.Navigator>
-        </PopMenuContextProvider>
+              <Stack.Screen
+                name="WildLifeCardEditScreen"
+                component={WildLifeCardEditScreen}
+                options={{ title: "Editor" }}
+              />
+            </Stack.Navigator>
+          </PopMenuContextProvider>
+        </ImageSettingsContextProvider>
       </NavigationContainer>
     </QueryClientProvider>
   );
