@@ -4,9 +4,9 @@ import CalendarIcon from "../icons/CalendarIcon";
 export const DateObservation = ({ children }) => {
   return (
     <View style={styles.rootView}>
-      <View style={styles.iconContainer}>
+      {/* <View style={styles.iconContainer}>
         <CalendarIcon />
-      </View>
+      </View> */}
       <Text style={styles.dateObservationText}>{children}</Text>
     </View>
   );
@@ -14,9 +14,7 @@ export const DateObservation = ({ children }) => {
 
 const styles = StyleSheet.create({
   rootView: {
-    flex: 1,
     flexDirection: "row",
-    //backgroundColor: "blue",
   },
   iconContainer: {
     justifyContent: "center",
@@ -26,7 +24,5 @@ const styles = StyleSheet.create({
   dateObservationText: {
     color: "white",
     fontSize: 14,
-    fontWeight: "bold",
-    paddingVertical: 3,
   },
 });

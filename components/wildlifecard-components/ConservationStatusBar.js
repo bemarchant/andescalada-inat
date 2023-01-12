@@ -222,13 +222,13 @@ export function ConservationStatusBar({ props, circlePosX }) {
       <Path d="M31.27 0H15.635v7.818H31.27z" fill="url(#n)" fillOpacity={1} />
 
       <Circle
-        r={9}
+        r={10}
         cy={4}
         cx={circleX}
         fill={conservationStatus.color}
         fillOpacity={1}
         stroke={conservationStatus.borderColor}
-        strokeWidth={2}
+        strokeWidth={0}
         strokeLinecap="round"
         strokeDasharray="none"
         strokeOpacity={1}

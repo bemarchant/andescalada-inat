@@ -12,7 +12,6 @@ export const CientificName = ({ children }) => {
 
 const styles = StyleSheet.create({
   cientificNameText: {
-    paddingVertical: 1,
     color: "white",
     fontSize: 16,
     fontWeight: "normal",

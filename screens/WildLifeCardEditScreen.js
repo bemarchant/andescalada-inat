@@ -70,8 +70,11 @@ export const WildLifeCardEditScreen = ({ navigation, route }) => {
               cardHeight={cardHeight}
               cardWidth={cardWidth}
             />
-            <ObservationInfoBox observation={observation} />
-            <INatCLIcon style={styles.iNatIconContainer} />
+            <ObservationInfoBox
+              observation={observation}
+              cardWidth={cardWidth}
+            />
+            {/* <INatCLIcon style={styles.iNatIconContainer} /> */}
           </View>
 
           <PopUpMenu
@@ -98,6 +101,7 @@ const styles = StyleSheet.create({
     width: cardWidth,
     backgroundColor: "#654545ff",
   },
+
   iNatIconContainer: {
     position: "absolute",
     zIndex: 1000,

@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
-
+import ImageGestureHandler from "./ImageGestureHandler";
+import { ResearchGradeStatus } from "./ResearchGradeStatus";
 import { CientificName } from "./CientificName";
 import { CommonName } from "./CommonName";
 import { ConservationStatusBar } from "./ConservationStatusBar";
@@ -23,7 +24,7 @@ import { getUserNameObservation } from "../../utils";
 let windowWidth = Dimensions.get("window").width;
 let windowHeight = Dimensions.get("window").height;
 
-export const ObservationInfoBox = ({ observation }) => {
+export const ObservationInfoBox = ({ observation, cardWidth }) => {
   const popMenuCtx = useContext(PopMenuContext);
 
   useEffect(() => {}, [popMenuCtx.visibility], [popMenuCtx.selectedOption]);
@@ -44,17 +45,23 @@ export const ObservationInfoBox = ({ observation }) => {
     observation?.["taxon"]?.["preferred_common_name"] ?? "Sin nombre común";
   let userIconUrl = observation?.["user"]?.["icon_url"];
   return (
-    <GestureDetector gesture={panCircleStatusBar}>
+    <>
       <View style={[styles.infoContainer]}>
-        <View style={styles.nameContainer}>
-          <CommonName>{commonName}</CommonName>
-          <Pressable
-            onPress={() => {
-              popMenuCtx.setVisibility(true);
-              popMenuCtx.setOptions(DISTRIBUTIONS);
-            }}
-          >
+        <GestureDetector gesture={panCircleStatusBar}>
+          <View>
             <View
+              style={[styles.topBackground, { width: cardWidth - 24 }]}
+            ></View>
+
+            <View style={[styles.topInfoContainer, { width: cardWidth - 24 }]}>
+              <CommonName>{commonName}</CommonName>
+              <Pressable
+                onPress={() => {
+                  popMenuCtx.setVisibility(true);
+                  popMenuCtx.setOptions(DISTRIBUTIONS);
+                }}
+              >
+                {/* <View
               style={[
                 styles.distributionContainer,
                 {
@@ -66,48 +73,109 @@ export const ObservationInfoBox = ({ observation }) => {
               <Text style={[styles.distributionText]}>
                 {popMenuCtx.selectedOption.shortName}
               </Text>
-            </View>
-          </Pressable>
-        </View>
+            </View> */}
+              </Pressable>
 
-        <CientificName>{cientificName}</CientificName>
-        <View style={styles.statusBar}>
-          <ConservationStatusBar
-            style={styles.statusBar}
-            circlePosX={circlePosX}
-          />
+              {/* <ResearchGradeStatus /> */}
+              <CientificName>{cientificName}</CientificName>
+
+              <View style={styles.statusBar}>
+                <ConservationStatusBar
+                  style={styles.statusBar}
+                  circlePosX={circlePosX}
+                />
+              </View>
+            </View>
+          </View>
+        </GestureDetector>
+        <View style={styles.imageGestureHandlerContainer}>
+          <ImageGestureHandler />
         </View>
-        <ClimbingZoneText>{climbingZone}</ClimbingZoneText>
-        <UserName userIconUrl={userIconUrl}>{userName}</UserName>
-        <DateObservation>{date}</DateObservation>
+        <View style={styles.bottomInfo}>
+          <View
+            style={[styles.bottomBackground, { width: cardWidth - 24 }]}
+          ></View>
+          <View
+            style={[styles.bottomInfoContainer, , { width: cardWidth - 24 }]}
+          >
+            <ClimbingZoneText>{climbingZone}</ClimbingZoneText>
+            <UserName userIconUrl={userIconUrl}>{userName}</UserName>
+            <DateObservation>{date}</DateObservation>
+          </View>
+        </View>
       </View>
-    </GestureDetector>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   statusBar: {
-    marginLeft: -10,
+    flex: 1,
+    justifyContent: "center",
+    borderColor: "white",
+    borderWidth: 1,
+  },
+
+  topBackground: {
+    height: 100,
+    opacity: 0.3,
+    backgroundColor: "black",
+    marginLeft: 12,
+    marginTop: 12 + 30,
+    borderTopWidth: 0,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+
+  imageGestureHandlerContainer: {
+    flex: 1,
+    borderColor: "white",
+    borderWidth: 1,
+  },
+
+  bottomBackground: {
+    height: 100,
+    opacity: 0.3,
+    backgroundColor: "black",
+    marginLeft: 12,
+    marginBottom: 12 + 30,
+    borderTopWidth: 0,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
 
   infoContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+
+  // headerIconsContainer: {
+  //   padding: 0,
+  //   flexDirection: "row",
+  // },
+
+  textInput: {},
+
+  topInfoContainer: {
+    flex: 1,
+    height: 90,
     position: "absolute",
-    bottom: windowWidth * 0.06,
-    left: windowHeight * 0.02,
+    justifyContent: "space-around",
+    //backgroundColor: "red",
+    top: 42,
+    left: 20,
   },
 
-  headerIconsContainer: {
-    padding: 0,
-    flexDirection: "row",
-  },
-
-  textInput: {
+  bottomInfoContainer: {
     flex: 1,
-  },
-
-  nameContainer: {
-    flex: 1,
+    position: "absolute",
     flexDirection: "row",
+    justifyContent: "space-between",
+    left: 12,
+    top: 115,
+    paddingHorizontal: 10,
+    // borderTopColor: "gray",
+    // borderTopWidth: 1,
   },
   distributionContainer: {
     alignItems: "center",

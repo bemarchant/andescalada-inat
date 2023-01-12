@@ -4,9 +4,9 @@ import ClimbZoneIcon from "../icons/ClimbZoneIcon";
 export const ClimbingZoneText = ({ children }) => {
   return (
     <View style={styles.rootView}>
-      <View style={styles.iconContainer}>
+      {/* <View style={styles.iconContainer}>
         <ClimbZoneIcon />
-      </View>
+      </View> */}
       <Text style={styles.userNameText}>{children}</Text>
     </View>
   );
@@ -14,7 +14,6 @@ export const ClimbingZoneText = ({ children }) => {
 
 const styles = StyleSheet.create({
   rootView: {
-    flex: 1,
     flexDirection: "row",
   },
   iconContainer: {
@@ -25,7 +24,5 @@ const styles = StyleSheet.create({
   userNameText: {
     color: "white",
     fontSize: 14,
-    fontWeight: "bold",
-    paddingVertical: 3,
   },
 });

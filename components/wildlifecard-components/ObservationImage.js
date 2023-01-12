@@ -6,7 +6,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { getPhotoImageUri } from "../../utils";
 
-let frameColor = "black";
 let widthWindow = Dimensions.get("window").width;
 let heightWindow = Dimensions.get("window").height;
 
@@ -49,7 +48,6 @@ export const ObservationImage = ({ observation, cardWidth, cardHeight }) => {
   }));
 
   const composedGesture = Gesture.Simultaneous(pinchImage, panImage);
-
   return (
     <View style={{ position: "absolute" }}>
       <GestureDetector gesture={composedGesture}>
@@ -68,19 +66,8 @@ export const ObservationImage = ({ observation, cardWidth, cardHeight }) => {
                 styles.frameContainer,
                 {
                   width: cardWidth,
-                  height: cardHeight * 0.72,
+                  height: cardHeight,
                   top: -heightPhoto,
-                },
-              ]}
-            />
-            <View
-              style={[
-                styles.bottomContainer,
-                ,
-                {
-                  width: cardWidth,
-                  height: cardHeight * 0.3,
-                  top: -heightPhoto + cardHeight * 0.72,
                 },
               ]}
             />
@@ -96,17 +83,13 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
 
-  bottomContainer: {
-    position: "absolute",
-    backgroundColor: frameColor,
-  },
-
   frameContainer: {
     position: "absolute",
     borderWidth: 10,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderColor: frameColor,
-    backgroundColor: "transparent",
+    marginLeft: 0,
+    borderRadius: 10,
+    borderColor: "black",
+    borderTopWidth: 40,
+    borderBottomWidth: 40,
   },
 });
