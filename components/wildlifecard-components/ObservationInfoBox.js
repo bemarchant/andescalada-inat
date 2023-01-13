@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { runOnJS } from "react-native-reanimated";
+import Animated, { runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import {
   Platform,
@@ -20,12 +20,13 @@ import { DateObservation } from "./DateObservation";
 import { PopMenuContext } from "../../store/context/popMenu-context";
 import { DISTRIBUTIONS } from "../../utils";
 import { getUserNameObservation } from "../../utils";
-
+import { ImageSettingsContext } from "../../store/context/imageSettings-context";
 let windowWidth = Dimensions.get("window").width;
 let windowHeight = Dimensions.get("window").height;
 
 export const ObservationInfoBox = ({ observation, cardWidth }) => {
   const popMenuCtx = useContext(PopMenuContext);
+  const imageSettingsCtx = useContext(ImageSettingsContext);
 
   useEffect(() => {}, [popMenuCtx.visibility], [popMenuCtx.selectedOption]);
 
@@ -88,9 +89,9 @@ export const ObservationInfoBox = ({ observation, cardWidth }) => {
             </View>
           </View>
         </GestureDetector>
-        <View style={styles.imageGestureHandlerContainer}>
-          <ImageGestureHandler />
-        </View>
+        <ImageGestureHandler>
+          <View style={styles.imageGestureHandlerContainer}></View>
+        </ImageGestureHandler>
         <View style={styles.bottomInfo}>
           <View
             style={[styles.bottomBackground, { width: cardWidth - 24 }]}
@@ -112,8 +113,6 @@ const styles = StyleSheet.create({
   statusBar: {
     flex: 1,
     justifyContent: "center",
-    borderColor: "white",
-    borderWidth: 1,
   },
 
   topBackground: {
@@ -129,8 +128,8 @@ const styles = StyleSheet.create({
 
   imageGestureHandlerContainer: {
     flex: 1,
-    borderColor: "white",
-    borderWidth: 1,
+    // borderColor: "white",
+    // borderWidth: 1,
   },
 
   bottomBackground: {

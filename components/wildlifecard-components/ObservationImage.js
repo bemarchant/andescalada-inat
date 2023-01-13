@@ -5,11 +5,15 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { getPhotoImageUri } from "../../utils";
+import { useContext } from "react";
+import { ImageSettingsContext } from "../../store/context/imageSettings-context";
 
 let widthWindow = Dimensions.get("window").width;
 let heightWindow = Dimensions.get("window").height;
 
 export const ObservationImage = ({ observation, cardWidth, cardHeight }) => {
+  const imageSettingsCtx = useContext(ImageSettingsContext);
+
   const widthPhoto =
     observation["photos"][0]["original_dimensions"]["width"] * 1;
   const heightPhoto =
@@ -39,11 +43,9 @@ export const ObservationImage = ({ observation, cardWidth, cardHeight }) => {
 
   const styleAnimated = useAnimatedStyle(() => ({
     transform: [
-      { translateX: imagePosX.value + centerPinchX.value - imageCenter.x },
-      { translateY: imagePosY.value + centerPinchY.value - imageCenter.y },
-      { scale: imageScale.value },
-      { translateX: imagePosX.value - centerPinchX.value + imageCenter.x },
-      { translateY: imagePosY.value - centerPinchY.value + imageCenter.y },
+      { translateX: imageSettingsCtx.posX },
+      { translateY: imageSettingsCtx.posY },
+      { scale: imageSettingsCtx.scale },
     ],
   }));
 
